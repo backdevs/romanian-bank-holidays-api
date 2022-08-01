@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  api:
+    image: romanian-bank-holidays-api
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
