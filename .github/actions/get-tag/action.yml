@@ -1,0 +1,12 @@
+name: 'Get Tag'
+description: 'Get the tag from $GITHUB_REF.'
+outputs:
+  tag:
+    description: 'Tag'
+    value: ${{ steps.get-tag.outputs.tag }}
+runs:
+  using: 'composite'
+  steps:
+    - id: get-tag
+      run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
+      shell: bash
