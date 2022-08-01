@@ -8,7 +8,7 @@ A simple Go API that serves the Romanian bank holidays
 * [Docker](https://docs.docker.com/get-docker/) `^20.10`
 
 # Usage
-This API is publicly available at: https://romanian-bank-holidays.backdevs.net
+This API is publicly available at: https://romanian-bank-holidays.backdevs.net/?year=2049
 
 However, if you want, you can run it locally using docker:
 ```shell
