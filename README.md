@@ -1,7 +1,8 @@
 # [Romanian bank holidays API](https://romanian-bank-holidays.backdevs.net)
 A simple Go API that serves the Romanian bank holidays
 
-![Build and Push status](https://github.com/backdevs/romanian-bank-holidays-api/actions/workflows/docker-build-and-push.yml)
+![Build and Push status](https://github.com/backdevs/romanian-bank-holidays-api/actions/workflows/docker-build-and-push.yml/badge.svg)
+![Build and Push status](https://img.shields.io/github/v/release/backdevs/romanian-bank-holidays-api)
 
 # Prerequisites
 * [Docker](https://docs.docker.com/get-docker/) `^20.10`
