@@ -28,9 +28,7 @@ func main() {
 			return fiber.NewError(fiber.StatusBadRequest, getJSONError(err.Error()))
 		}
 
-		holidaysJson, _ := json.Marshal(holidays)
-
-		return c.Send(holidaysJson)
+		return c.JSON(holidays)
 	})
 
 	err := app.Listen(":8080")
