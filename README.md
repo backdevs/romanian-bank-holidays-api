@@ -1,4 +1,4 @@
-# [Romanian bank holidays API](https://romanian-bank-holidays.backdevs.net)
+# [Romanian bank holidays API](https://api.bank-holidays.ro)
 A simple Go API that serves the Romanian bank holidays
 
 ![Build and Push status](https://github.com/backdevs/romanian-bank-holidays-api/actions/workflows/docker-build-and-push.yml/badge.svg)
@@ -8,7 +8,7 @@ A simple Go API that serves the Romanian bank holidays
 * [Docker](https://docs.docker.com/get-docker/) `^20.10`
 
 # Usage
-This API is publicly available at: https://romanian-bank-holidays.backdevs.net/?year=2049
+This API is publicly available at: https://api.bank-holidays.ro/?year=2049
 
 However, if you want, you can run it locally using docker:
 ```shell
