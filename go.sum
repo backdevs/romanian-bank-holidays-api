@@ -5,8 +5,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/gofiber/fiber/v2 v2.48.0 h1:cRVMCb9aUJDsyHxGFLwz/sGzDggdailZZyptU9F9cU0=
 github.com/gofiber/fiber/v2 v2.48.0/go.mod h1:xqJgfqrc23FJuqGOW6DVgi3HyZEm2Mn9pRqUb2kHSX8=
-github.com/golang-module/carbon/v2 v2.2.3 h1:WvGIc5+qzq9drNzH+Gnjh1TZ0JgDY/IA+m2Dvk7Qm4Q=
-github.com/golang-module/carbon/v2 v2.2.3/go.mod h1:LdzRApgmDT/wt0eNT8MEJbHfJdSqCtT46uZhfF30dqI=
+github.com/golang-module/carbon/v2 v2.2.4 h1:uoJFcO2ONWahEfjWVpWIfDNSlFGQ0LU8xCw1LTyjXT8=
+github.com/golang-module/carbon/v2 v2.2.4/go.mod h1:LdzRApgmDT/wt0eNT8MEJbHfJdSqCtT46uZhfF30dqI=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/klauspost/compress v1.16.3 h1:XuJt9zzcnaz6a16/OU53ZjWp/v7/42WcR5t2a0PcNQY=
