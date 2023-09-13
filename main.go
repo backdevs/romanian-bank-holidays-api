@@ -56,7 +56,7 @@ func getHolidays(year int) ([15]Holiday, error) {
 		return [15]Holiday{}, errors.New("the year must be greater than 325")
 	}
 
-	easter := carbon.Time2Carbon(orthodoxEaster)
+	easter := carbon.CreateFromStdTime(orthodoxEaster)
 	secondDayOfEaster := easter.AddDay()
 	goodFriday := easter.SubDays(2)
 	whitMonday := easter.AddDays(50)
