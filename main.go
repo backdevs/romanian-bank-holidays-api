@@ -50,10 +50,10 @@ func main() {
 	}
 }
 
-func getHolidays(year int) ([15]Holiday, error) {
+func getHolidays(year int) ([]Holiday, error) {
 	orthodoxEaster, err := eastertime.OrthodoxByYear(year)
 	if err != nil {
-		return [15]Holiday{}, errors.New("the year must be greater than 325")
+		return []Holiday{}, errors.New("the year must be greater than 325")
 	}
 
 	easter := carbon.CreateFromStdTime(orthodoxEaster)
@@ -62,7 +62,7 @@ func getHolidays(year int) ([15]Holiday, error) {
 	whitMonday := easter.AddDays(50)
 	whitSunday := whitMonday.SubDay()
 
-	holidays := [15]Holiday{
+	holidays := []Holiday{
 		{
 			Name: "Anul nou",
 			Date: carbon.CreateFromDate(year, 1, 1).ToDateString(),
