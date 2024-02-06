@@ -72,6 +72,14 @@ func getHolidays(year int) ([]Holiday, error) {
 			Date: carbon.CreateFromDate(year, 1, 2).ToDateString(),
 		},
 		{
+			Name: "Bobotează",
+			Date: carbon.CreateFromDate(year, 1, 6).ToDateString(),
+		},
+		{
+			Name: "Soborul Sfântului Ioan Botezătorul",
+			Date: carbon.CreateFromDate(year, 1, 7).ToDateString(),
+		},
+		{
 			Name: "Ziua Unirii",
 			Date: carbon.CreateFromDate(year, 1, 24).ToDateString(),
 		},
