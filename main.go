@@ -11,6 +11,7 @@ import (
 
 func main() {
 	app := fiber.New(fiber.Config{
+		GETOnly: true,
 		ErrorHandler: func(c *fiber.Ctx, err error) error {
 			code := fiber.StatusInternalServerError
 
@@ -25,7 +26,7 @@ func main() {
 		},
 	})
 
-	app.All("/", func(c *fiber.Ctx) error {
+	app.Get("/", func(c *fiber.Ctx) error {
 		queryYear := c.Query("year", carbon.Now().Format("Y"))
 
 		year, err := strconv.Atoi(queryYear)
