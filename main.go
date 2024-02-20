@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"errors"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-module/carbon/v2"
@@ -11,7 +10,20 @@ import (
 )
 
 func main() {
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		ErrorHandler: func(c *fiber.Ctx, err error) error {
+			code := fiber.StatusInternalServerError
+
+			var e *fiber.Error
+			if errors.As(err, &e) {
+				code = e.Code
+			}
+
+			return c.Status(code).JSON(map[string]string{
+				"message": err.Error(),
+			})
+		},
+	})
 
 	app.All("/", func(c *fiber.Ctx) error {
 		queryYear := c.Query("year", carbon.Now().Format("Y"))
@@ -19,13 +31,13 @@ func main() {
 		year, err := strconv.Atoi(queryYear)
 
 		if err != nil {
-			return fiber.NewError(fiber.StatusBadRequest, getJSONError("the year must be an integer"))
+			return fiber.NewError(fiber.StatusUnprocessableEntity, "the year must be an integer")
 		}
 
 		holidays, err := getHolidays(year)
 
 		if err != nil {
-			return fiber.NewError(fiber.StatusBadRequest, getJSONError(err.Error()))
+			return fiber.NewError(fiber.StatusUnprocessableEntity, err.Error())
 		}
 
 		return c.JSON(holidays)
@@ -38,19 +50,19 @@ func main() {
 	}
 }
 
-func getHolidays(year int) ([15]Holiday, error) {
+func getHolidays(year int) ([]Holiday, error) {
 	orthodoxEaster, err := eastertime.OrthodoxByYear(year)
 	if err != nil {
-		return [15]Holiday{}, errors.New("the year must be greater than 325")
+		return []Holiday{}, errors.New("the year must be greater than 325")
 	}
 
-	easter := carbon.Time2Carbon(orthodoxEaster)
+	easter := carbon.CreateFromStdTime(orthodoxEaster)
 	secondDayOfEaster := easter.AddDay()
 	goodFriday := easter.SubDays(2)
 	whitMonday := easter.AddDays(50)
 	whitSunday := whitMonday.SubDay()
 
-	holidays := [15]Holiday{
+	holidays := []Holiday{
 		{
 			Name: "Anul nou",
 			Date: carbon.CreateFromDate(year, 1, 1).ToDateString(),
@@ -58,6 +70,14 @@ func getHolidays(year int) ([15]Holiday, error) {
 		{
 			Name: "Anul nou",
 			Date: carbon.CreateFromDate(year, 1, 2).ToDateString(),
+		},
+		{
+			Name: "Bobotează",
+			Date: carbon.CreateFromDate(year, 1, 6).ToDateString(),
+		},
+		{
+			Name: "Soborul Sfântului Ioan Botezătorul",
+			Date: carbon.CreateFromDate(year, 1, 7).ToDateString(),
 		},
 		{
 			Name: "Ziua Unirii",
@@ -116,16 +136,7 @@ func getHolidays(year int) ([15]Holiday, error) {
 	return holidays, nil
 }
 
-func getJSONError(message string) string {
-	err, _ := json.Marshal(Error{message})
-	return string(err)
-}
-
 type Holiday struct {
 	Name string `json:"name"`
 	Date string `json:"date"`
-}
-
-type Error struct {
-	Message string `json:"message"`
 }
