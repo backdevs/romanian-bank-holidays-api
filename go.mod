@@ -3,7 +3,7 @@ module github.com/bogdannbv/romanian-bank-holidays-api
 go 1.18
 
 require (
-	github.com/gofiber/fiber/v2 v2.52.2
+	github.com/gofiber/fiber/v2 v2.52.4
 	github.com/golang-module/carbon/v2 v2.3.10
 	github.com/vjeantet/eastertime v1.0.0
 )
