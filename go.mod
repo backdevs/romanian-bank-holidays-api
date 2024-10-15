@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.5
-	github.com/golang-module/carbon/v2 v2.3.12
+	github.com/golang-module/carbon/v2 v2.4.1
 	github.com/vjeantet/eastertime v1.0.0
 )
 
