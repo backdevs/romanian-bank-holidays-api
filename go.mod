@@ -1,15 +1,16 @@
 module github.com/bogdannbv/romanian-bank-holidays-api
 
-go 1.18
+go 1.23
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.5
-	github.com/golang-module/carbon/v2 v2.4.1
+	github.com/golang-module/carbon/v2 v2.6.9
 	github.com/vjeantet/eastertime v1.0.0
 )
 
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
+	github.com/dromara/carbon/v2 v2.6.9 // indirect
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/klauspost/compress v1.17.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
