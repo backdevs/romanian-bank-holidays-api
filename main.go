@@ -2,12 +2,18 @@ package main
 
 import (
 	"errors"
+	"log"
+	"strconv"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-module/carbon/v2"
 	"github.com/vjeantet/eastertime"
-	"log"
-	"strconv"
 )
+
+type holiday struct {
+	Name string `json:"name"`
+	Date string `json:"date"`
+}
 
 func main() {
 	app := fiber.New(fiber.Config{
@@ -51,38 +57,39 @@ func main() {
 	}
 }
 
-func getHolidays(year int) ([]Holiday, error) {
-	orthodoxEaster, err := eastertime.OrthodoxByYear(year)
+func getHolidays(y int) ([]holiday, error) {
+	orthodoxEaster, err := eastertime.OrthodoxByYear(y)
 	if err != nil {
-		return []Holiday{}, errors.New("the year must be greater than 325")
+		return []holiday{}, errors.New("the year must be greater than 325")
 	}
 
 	easter := carbon.CreateFromStdTime(orthodoxEaster)
 	secondDayOfEaster := easter.AddDay()
 	goodFriday := easter.SubDays(2)
+
 	whitMonday := easter.AddDays(50)
 	whitSunday := whitMonday.SubDay()
 
-	holidays := []Holiday{
+	return []holiday{
 		{
 			Name: "Anul nou",
-			Date: carbon.CreateFromDate(year, 1, 1).ToDateString(),
+			Date: carbon.CreateFromDate(y, 1, 1).ToDateString(),
 		},
 		{
 			Name: "Anul nou",
-			Date: carbon.CreateFromDate(year, 1, 2).ToDateString(),
+			Date: carbon.CreateFromDate(y, 1, 2).ToDateString(),
 		},
 		{
 			Name: "Bobotează",
-			Date: carbon.CreateFromDate(year, 1, 6).ToDateString(),
+			Date: carbon.CreateFromDate(y, 1, 6).ToDateString(),
 		},
 		{
 			Name: "Soborul Sfântului Ioan Botezătorul",
-			Date: carbon.CreateFromDate(year, 1, 7).ToDateString(),
+			Date: carbon.CreateFromDate(y, 1, 7).ToDateString(),
 		},
 		{
 			Name: "Ziua Unirii",
-			Date: carbon.CreateFromDate(year, 1, 24).ToDateString(),
+			Date: carbon.CreateFromDate(y, 1, 24).ToDateString(),
 		},
 		{
 			Name: "Vinerea Mare",
@@ -98,11 +105,11 @@ func getHolidays(year int) ([]Holiday, error) {
 		},
 		{
 			Name: "Ziua Muncii",
-			Date: carbon.CreateFromDate(year, 5, 1).ToDateString(),
+			Date: carbon.CreateFromDate(y, 5, 1).ToDateString(),
 		},
 		{
 			Name: "Ziua Copilului",
-			Date: carbon.CreateFromDate(year, 6, 1).ToDateString(),
+			Date: carbon.CreateFromDate(y, 6, 1).ToDateString(),
 		},
 		{
 			Name: "Rusalii",
@@ -114,30 +121,23 @@ func getHolidays(year int) ([]Holiday, error) {
 		},
 		{
 			Name: "Adormirea Maicii Domnului",
-			Date: carbon.CreateFromDate(year, 8, 15).ToDateString(),
+			Date: carbon.CreateFromDate(y, 8, 15).ToDateString(),
 		},
 		{
 			Name: "Ziua Sfântului Andrei",
-			Date: carbon.CreateFromDate(year, 11, 30).ToDateString(),
+			Date: carbon.CreateFromDate(y, 11, 30).ToDateString(),
 		},
 		{
 			Name: "Ziua naţională",
-			Date: carbon.CreateFromDate(year, 12, 1).ToDateString(),
+			Date: carbon.CreateFromDate(y, 12, 1).ToDateString(),
 		},
 		{
 			Name: "Crăciunul",
-			Date: carbon.CreateFromDate(year, 12, 25).ToDateString(),
+			Date: carbon.CreateFromDate(y, 12, 25).ToDateString(),
 		},
 		{
 			Name: "A doua zi de Crăciun",
-			Date: carbon.CreateFromDate(year, 12, 26).ToDateString(),
+			Date: carbon.CreateFromDate(y, 12, 26).ToDateString(),
 		},
-	}
-
-	return holidays, nil
-}
-
-type Holiday struct {
-	Name string `json:"name"`
-	Date string `json:"date"`
+	}, nil
 }
